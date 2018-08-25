@@ -1,3 +1,5 @@
+package br.senac.tads.pi3a.pi3.ado01.Utils;
+
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -15,14 +17,11 @@ import java.sql.SQLException;
  */
 public class DBConnect {
     
-     private Connection obterConexao() throws ClassNotFoundException, SQLException{
+     public static Connection obterConexao() throws ClassNotFoundException, SQLException{
         Class.forName("com.mysql.jdbc.Driver");
         
         Connection conn = DriverManager.getConnection(
-        "jdbc:mysql://localhost:3306/agendabd",
-                "root",
-                "root"); 
+        "jdbc:mysql://localhost:3306/produtobd", "root", ""); 
         return conn;
     }
-    
 }
