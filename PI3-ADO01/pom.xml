@@ -13,6 +13,11 @@
             <id> giovanebarreira</id>
             <name>Giovane Barreira</name>
         </developer>
+        
+        <developer>
+            <id>DudFelipe</id>
+            <name>Eduardo Felipe</name>
+        </developer>
     </developers>
     
     <properties>
