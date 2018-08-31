@@ -5,6 +5,7 @@
  */
 package br.senac.tads.pi3a.pi3.ado01.Main;
 
+import br.senac.tads.pi3a.pi3.ado01.BLL.CategoriaBLL;
 import br.senac.tads.pi3a.pi3.ado01.BLL.ProdutoBLL;
 import br.senac.tads.pi3a.pi3.ado01.DAO.ProdutoDAO;
 import br.senac.tads.pi3a.pi3.ado01.Modelos.Produto;
@@ -78,13 +79,16 @@ public class main {
     /**
      *
      *
+     * @throws java.lang.ClassNotFoundException
+     * @throws java.sql.SQLException
      */
-    public static void inserirProduto(){
+    public static void inserirProduto() throws ClassNotFoundException, SQLException{
         Scanner ler = new Scanner(System.in);
         Produto p = new Produto();
         
         String erros;
         boolean error;
+        String cat;
         
         do{
             System.out.print("Nome do produto: ");
@@ -133,8 +137,11 @@ public class main {
                 }
             }while(error==true);
             
+            System.out.print("Categoria do produto: ");
+            cat = ler.nextLine();
             
             erros = ProdutoBLL.inserir(p);
+            erros = erros + CategoriaBLL.inserir(cat);
             
             if(!erros.equals("")){
                 System.out.println(erros);
