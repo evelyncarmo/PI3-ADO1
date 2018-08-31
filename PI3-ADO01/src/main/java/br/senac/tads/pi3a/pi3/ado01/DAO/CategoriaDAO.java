@@ -7,9 +7,12 @@ package br.senac.tads.pi3a.pi3.ado01.DAO;
 
 import br.senac.tads.pi3a.pi3.ado01.Utils.DBConnect;
 import br.senac.tads.pi3a.pi3.ado01.Modelos.Categoria;
+import br.senac.tads.pi3a.pi3.ado01.Modelos.Produto;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 /**
  *
@@ -17,20 +20,38 @@ import java.sql.SQLException;
  */
 public class CategoriaDAO {
     
-    public static void inserir(Categoria cat) throws SQLException, Exception{
+    public static void ligar(Categoria cat, Produto p) throws SQLException, Exception{
         
-        String sql = "INSERT INTO Categoria (Nome)"
-                + " VALUES(?)";
+        long prodID;
+        int catID;
+        
+        String fetchProduto = "SELECT id FROM produto WHERE nome="+p.getNome();
+        
+        String fetchCat = "SELECT id FROM categoria WHERE nome="+cat.getNome();
+        
+        String linkQuery = "INSERT INTO PRODUTOBD.PRODUTO_CATEGORIA (ID_PRODUTO, ID_CATEGORIA)"
+                + " VALUES(?, ?)";
         
         Connection conn = null;
+        Statement st = null;
+        ResultSet result;
         PreparedStatement pst = null;
         
         try{
             conn = DBConnect.obterConexao();
             
-            pst = conn.prepareStatement(sql);
+            st = conn.createStatement();
+            result = st.executeQuery(fetchProduto);
+            prodID = result.getLong("id");
             
-            pst.setString(1, cat.getNome());
+            result = st.executeQuery(fetchCat);
+            catID = result.getInt("id");
+            
+            
+            pst = conn.prepareStatement(linkQuery);
+            
+            pst.setLong(1, prodID);
+            pst.setInt(2, catID);
            
             pst.execute();
         } finally {
