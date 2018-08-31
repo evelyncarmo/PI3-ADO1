@@ -6,8 +6,7 @@
 package br.senac.tads.pi3a.pi3.ado01.BLL;
 
 import br.senac.tads.pi3a.pi3.ado01.Modelos.Produto;
-import java.util.ArrayList;
-import java.util.List;
+
 
 /**
  *
@@ -15,7 +14,7 @@ import java.util.List;
  */
 public class ProdutoBLL {
     
-    public static String inserir(Produto p){
+    public static String inserir(Produto p){ 
         
         String erros = "";
         
