@@ -8,6 +8,11 @@ package br.senac.tads.pi3a.pi3.ado01.Main;
 import br.senac.tads.pi3a.pi3.ado01.BLL.ProdutoBLL;
 import br.senac.tads.pi3a.pi3.ado01.DAO.ProdutoDAO;
 import br.senac.tads.pi3a.pi3.ado01.Modelos.Produto;
+import br.senac.tads.pi3a.pi3.ado01.Utils.DBConnect;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.Date;
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -17,7 +22,7 @@ import java.util.Scanner;
  * @author Marcos
  */
 public class main {
-    public static void main(String[] args){
+    public static void main(String[] args) throws Exception{
         
         Scanner ler = new Scanner(System.in);
         int opcao = 99;
@@ -151,10 +156,42 @@ public class main {
 
     /**
      *
+     * @throws java.sql.SQLException
      */
-    public static void listarCategorias(){
+    public static void listarCategorias()throws SQLException, Exception{   
+                
+        System.out.println("Categorias:");
+        System.out.println("");
         
+        String query = "SELECT nome FROM produtobd.categoria";
         
+        Connection conn = null;
+        Statement st = null;
+        ResultSet result;
+        
+        try{
+            conn = DBConnect.obterConexao();
+            st = conn.createStatement();
+            result = st.executeQuery(query);
+            
+            while(result.next()){
+                //int id = result.getInt("id");
+                String nome = result.getString("nome");
+                
+                System.out.println(nome);
+            }
+            
+
+        } finally {
+            //Se o statement ainda estiver aberto, realiza seu fechamento
+            if (st != null && !st.isClosed()) {
+                st.close();
+            }
+            //Se a conexão ainda estiver aberta, realiza seu fechamento
+            if (conn != null && !conn.isClosed()) {
+                conn.close();
+            }
+        }
     
     }    
 }
