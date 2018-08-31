@@ -161,7 +161,6 @@ public class main {
     public static void listarCategorias()throws SQLException, Exception{   
                 
         System.out.println("Categorias:");
-        System.out.println("");
         
         String query = "SELECT nome FROM produtobd.categoria";
         
@@ -181,6 +180,7 @@ public class main {
                 System.out.println(nome);
             }
             
+            
 
         } finally {
             //Se o statement ainda estiver aberto, realiza seu fechamento
@@ -192,6 +192,6 @@ public class main {
                 conn.close();
             }
         }
-    
+    System.out.println("");
     }    
 }
