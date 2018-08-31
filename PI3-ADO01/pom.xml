@@ -18,6 +18,11 @@
             <id>DudFelipe</id>
             <name>Eduardo Felipe</name>
         </developer>
+        
+        <developer>
+            <id>nicoslab</id>
+            <name>Marcos Limeira</name>
+        </developer>
     </developers>
     
     <properties>
