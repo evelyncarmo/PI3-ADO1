@@ -31,7 +31,7 @@ public class main {
                 error = false;
                 try{
                     opcao = ler.nextInt();
-                    if(opcao <0 || opcao > 7){
+                    if(opcao <0 || opcao > 5){
                         error = true;
                     }
                 }
@@ -48,6 +48,10 @@ public class main {
             switch(opcao){
                 case 1: inserirProduto();
                 break;
+                
+                case 5: listarCategorias();
+                break;
+                
             }
         }while(opcao!=0);
         
@@ -59,9 +63,7 @@ public class main {
             System.out.println("2 Alterar Produto");
             System.out.println("3 Remover Produto");
             System.out.println("4 Listar Produtos");
-            System.out.println("5 Inserir Categoria");
-            System.out.println("6 Remover Categoria");
-            System.out.println("7 Listar Categorias");
+            System.out.println("5 Listar Categorias");
             System.out.println("");
             System.out.println("0 Sair");
             System.out.println("");
@@ -145,5 +147,14 @@ public class main {
         catch(Exception ex){
             System.out.println(ex.getMessage());
         }
+    }
+
+    /**
+     *
+     */
+    public static void listarCategorias(){
+        
+        
+    
     }    
 }
